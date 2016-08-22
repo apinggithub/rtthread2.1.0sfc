@@ -30,14 +30,26 @@ static uint16_t ArrayRGB[320] = {0};
 void Lcd_Clear(uint16_t Color)               
 {	
    unsigned int i,m;
-   st7735_SetDisplayWindow(0,0,128-1,160-1);
-   LCD_IO_WriteReg(0x2C);
-   for(i=0;i<128;i++)
-    for(m=0;m<80;m++)
+   st7735_SetDisplayWindow(0,0,ST7735_LCD_PIXEL_WIDTH,ST7735_LCD_PIXEL_HEIGHT);
+   LCD_IO_WriteReg(LCD_REG_44);/* Memory write: RAMWR */
+   for(i=0;i<ST7735_LCD_PIXEL_WIDTH;i++)
+    for(m=0;m<ST7735_LCD_PIXEL_HEIGHT;m++)
     {	
 	  	LCD_IO_WriteData(Color>>8);
 			LCD_IO_WriteData(Color);
     }   
+}
+void st7735_FillRect(uint16_t Color, int x0, int y0, int x1, int y1)
+{
+	unsigned int i,m;
+   st7735_SetDisplayWindow(x0,y0,(x1-x0+1),(y1-y0+1));
+  LCD_IO_WriteReg(LCD_REG_44);/* Memory write: RAMWR */
+   for(i=0;i<(x1-x0+1);i++)
+    for(m=0;m<(y1-y0+1);m++)
+    {	
+	  	LCD_IO_WriteData(Color>>8);
+			LCD_IO_WriteData(Color);
+    }
 }
 
 /**
@@ -154,7 +166,7 @@ void st7735_Init(void)
   /* Main screen turn on, no delay */
   st7735_WriteReg(LCD_REG_41, 0x00);
   /* Memory access control: MY = 1, MX = 1, MV = 0, ML = 0 */
-  st7735_WriteReg(LCD_REG_54, 0xC0);
+  st7735_WriteReg(LCD_REG_54, 0xa0);
 }
 
 /**
@@ -210,7 +222,7 @@ void st7735_SetCursor(uint16_t Xpos, uint16_t Ypos)
   LCD_IO_WriteMultipleData(&data, 1);
   data = (Ypos) & 0xFF;
   LCD_IO_WriteMultipleData(&data, 1);
-  LCD_IO_WriteReg(LCD_REG_44);
+	LCD_IO_WriteReg(LCD_REG_44);/* Memory write: RAMWR */  
 }
 
 /**
@@ -307,6 +319,23 @@ void st7735_DrawHLine(uint16_t RGBCode, uint16_t Xpos, uint16_t Ypos, uint16_t L
   LCD_IO_WriteMultipleData((uint8_t*)&ArrayRGB[0], Length * 2);
 }
 
+void st7735_DrawHColorLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length,uint16_t *_pColor)
+{
+	uint8_t counter = 0;
+  
+  if(Xpos + Length > ST7735_LCD_PIXEL_WIDTH) return;
+  
+  /* Set Cursor */
+  st7735_SetCursor(Xpos, Ypos);
+  
+  for(counter = 0; counter < Length; counter++)
+  {
+    ArrayRGB[counter] = *_pColor++;
+  }
+  LCD_IO_WriteMultipleData((uint8_t*)&ArrayRGB[0], Length * 2);
+	
+}
+
 /**
   * @brief  Draws vertical line.
   * @param  RGBCode: Specifies the RGB color   
@@ -320,10 +349,15 @@ void st7735_DrawVLine(uint16_t RGBCode, uint16_t Xpos, uint16_t Ypos, uint16_t L
   uint8_t counter = 0;
   
   if(Ypos + Length > ST7735_LCD_PIXEL_HEIGHT) return;
+	
+	st7735_SetDisplayWindow(Xpos,Ypos,1,Length);
+	/* Memory write: RAMWR */  
+	LCD_IO_WriteReg(LCD_REG_44);
   for(counter = 0; counter < Length; counter++)
   {
-    st7735_WritePixel(Xpos, Ypos + counter, RGBCode);
-  }   
+    ArrayRGB[counter] = RGBCode;
+  }
+   LCD_IO_WriteMultipleData((uint8_t*)&ArrayRGB[0], Length * 2);	
 }
 
 /**
@@ -366,7 +400,7 @@ void st7735_DrawBitmap(uint16_t Xpos, uint16_t Ypos, uint8_t *pbmp)
   
   /* Set GRAM write direction and BGR = 0 */
   /* Memory access control: MY = 0, MX = 1, MV = 0, ML = 0 */
-  st7735_WriteReg(LCD_REG_54, 0x40);
+  st7735_WriteReg(LCD_REG_54, 0xa0);
 
   /* Set Cursor */
   st7735_SetCursor(Xpos, Ypos);  
@@ -375,7 +409,7 @@ void st7735_DrawBitmap(uint16_t Xpos, uint16_t Ypos, uint8_t *pbmp)
  
   /* Set GRAM write direction and BGR = 0 */
   /* Memory access control: MY = 1, MX = 1, MV = 0, ML = 0 */
-  st7735_WriteReg(LCD_REG_54, 0xC0);
+  st7735_WriteReg(LCD_REG_54, 0xa0);
 }
 #if 0
 /*  ÉèÖÃÏñËØµã ÑÕÉ«,X,Y */

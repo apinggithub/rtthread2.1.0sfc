@@ -154,7 +154,7 @@ static void _SetPixelIndex(GUI_DEVICE * pDevice, int x, int y, int PixelIndex) {
     GUI_USE_PARA(y);
     GUI_USE_PARA(PixelIndex);
     {
-			st7735_WritePixel(yPhys,xPhys,(uint16_t)PixelIndex);
+			st7735_WritePixel(xPhys,yPhys,(uint16_t)PixelIndex);
       //
       // Write into hardware ... Adapt to your system
       //
@@ -227,22 +227,25 @@ static void _XorPixel(GUI_DEVICE * pDevice, int x, int y) {
 */
 static void _FillRect(GUI_DEVICE * pDevice, int x0, int y0, int x1, int y1) {
   LCD_PIXELINDEX PixelIndex;
-  int x;
-
   PixelIndex = LCD__GetColorIndex();
-  if (GUI_pContext->DrawMode & LCD_DRAWMODE_XOR) {
-    for (; y0 <= y1; y0++) {
-      for (x = x0; x <= x1; x++) {
-        _XorPixel(pDevice, x, y0);
-      }
-    }
-  } else {
-    for (; y0 <= y1; y0++) {
-      for (x = x0; x <= x1; x++) {
-        _SetPixelIndex(pDevice, x, y0, PixelIndex);
-      }
-    }
-  }
+	#ifdef LCD_emwin
+		st7735_FillRect(PixelIndex,x0,y0,x1,y1);
+	#else
+	  int x;
+		if (GUI_pContext->DrawMode & LCD_DRAWMODE_XOR) {
+			for (; y0 <= y1; y0++) {
+				for (x = x0; x <= x1; x++) {
+					_XorPixel(pDevice, x, y0);
+				}
+			}
+		} else {
+			for (; y0 <= y1; y0++) {
+				for (x = x0; x <= x1; x++) {
+					_SetPixelIndex(pDevice, x, y0, PixelIndex);
+				}
+			}
+		}
+	#endif
 }
 
 /*********************************************************************
@@ -250,11 +253,15 @@ static void _FillRect(GUI_DEVICE * pDevice, int x0, int y0, int x1, int y1) {
 *       _DrawHLine
 */
 static void _DrawHLine(GUI_DEVICE * pDevice, int x0, int y, int x1) {
+	
+	/*#ifdef LCD_emwin
+		LCD_PIXELINDEX ColorIndex;
+		ColorIndex = LCD__GetColorIndex();
+		st7735_DrawHLine(ColorIndex,x0,y,(x1-x0+1));
+	#else*/ 
+		_FillRect(pDevice, x0, y, x1, y);
+	//#endif
 
-	//LCD_PIXELINDEX ColorIndex;
-  _FillRect(pDevice, x0, y, x1, y);
-	//ColorIndex = LCD__GetColorIndex();
-	//st7735_DrawHLine(ColorIndex,x0,y,(x1 - x0));
 }
 
 /*********************************************************************
@@ -262,11 +269,18 @@ static void _DrawHLine(GUI_DEVICE * pDevice, int x0, int y, int x1) {
 *       _DrawVLine, not optimized
 */
 static void _DrawVLine(GUI_DEVICE * pDevice, int x, int y0, int y1) {
-  _FillRect(pDevice, x, y0, x, y1);
+	
+	/*#ifdef LCD_emwin
+		LCD_PIXELINDEX ColorIndex;
+		ColorIndex = LCD__GetColorIndex();
+		st7735_DrawVLine(ColorIndex,x,y0,(y1 -y0+1));
+	#else */
+		_FillRect(pDevice, x, y0, x, y1);
+	//#endif
 		//LCD_PIXELINDEX ColorIndex;
   //_FillRect(pDevice, x0, y, x1, y);
 	//ColorIndex = LCD__GetColorIndex();
-	//st7735_DrawVLine(ColorIndex,x,y0,(y1 -y0));
+	//
 }
 
 /*********************************************************************
@@ -504,10 +518,15 @@ static void  _DrawBitLine8BPP(GUI_DEVICE * pDevice, int x, int y, U8 const GUI_U
 *   Drawing of 16bpp high color bitmaps.
 *   Only required for 16bpp color depth of target. Should be removed otherwise.
 */
-static void _DrawBitLine16BPP(GUI_DEVICE * pDevice, int x, int y, U16 const GUI_UNI_PTR * p, int xsize) {
+static void _DrawBitLine16BPP(GUI_DEVICE * pDevice, int x, int y, U16 const GUI_UNI_PTR * p, int xsize) 
+{
+	#ifdef LCD_emwin
+		st7735_DrawHColorLine(x,y,xsize,(uint16_t *)p);
+	#else
   for (;xsize > 0; xsize--, x++, p++) {
     _SetPixelIndex(pDevice, x, y, *p);
   }
+	#endif
 }
 
 /*********************************************************************
@@ -518,10 +537,15 @@ static void _DrawBitLine16BPP(GUI_DEVICE * pDevice, int x, int y, U16 const GUI_
 *   Drawing of 32bpp true color bitmaps.
 *   Only required for 32bpp color depth of target. Should be removed otherwise.
 */
-static void _DrawBitLine32BPP(GUI_DEVICE * pDevice, int x, int y, U32 const GUI_UNI_PTR * p, int xsize) {
-  for (;xsize > 0; xsize--, x++, p++) {
-    _SetPixelIndex(pDevice, x, y, *p);
-  }
+static void _DrawBitLine32BPP(GUI_DEVICE * pDevice, int x, int y, U32 const GUI_UNI_PTR * p, int xsize) 
+{
+	#ifdef LCD_emwin
+		st7735_DrawHColorLine(x,y,xsize,(uint16_t *)p);
+	#else
+		for (;xsize > 0; xsize--, x++, p++) {
+			_SetPixelIndex(pDevice, x, y, *p);
+		}
+	#endif
 }
 
 /*********************************************************************

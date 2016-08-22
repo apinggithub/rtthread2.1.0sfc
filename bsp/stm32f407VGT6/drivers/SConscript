@@ -11,11 +11,18 @@ board.c
 stm32f4xx_it.c
 drv_usart.c
 TFT_lcd.c
+platform.c
+rt_stm32f40x_spi.c
+stm32f4xx_hal_msp.c
 """)
 
 CPPPATH = [cwd]
 if GetDepend('RT_USING_LCD'):
 	src = src + ['drv_lcd_st7735.c']
+if GetDepend('RT_USING_MSD'):
+	src = src + ['msd.c']	
+
+	
 group = DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH)
 
 Return('group')

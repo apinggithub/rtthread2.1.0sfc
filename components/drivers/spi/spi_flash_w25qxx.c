@@ -46,12 +46,13 @@
 
 /* command list */
 #define CMD_WRSR                    (0x01)  /* Write Status Register */
+#define CMD_EWRSR	 									(0x50)		/* ÔÊÐíÐ´×´Ì¬¼Ä´æÆ÷µÄÃüÁî */
 #define CMD_PP                      (0x02)  /* Page Program */
 #define CMD_READ                    (0x03)  /* Read Data */
 #define CMD_WRDI                    (0x04)  /* Write Disable */
 #define CMD_RDSR1                   (0x05)  /* Read Status Register-1 */
 #define CMD_WREN                    (0x06)  /* Write Enable */
-#define CMD_FAST_READ               (0x0B)  /* Fast Read */
+#define CMD_FAST_READ               (  )  /* Fast Read */
 #define CMD_ERASE_4K                (0x20)  /* Sector Erase:4K */
 #define CMD_RDSR2                   (0x35)  /* Read Status Register-2 */
 #define CMD_ERASE_32K               (0x52)  /* 32KB Block Erase */
@@ -118,7 +119,7 @@ static uint32_t w25qxx_read(uint32_t offset, uint8_t * buffer, uint32_t size)
  *
  */
 uint32_t w25qxx_page_write(uint32_t page_addr, const uint8_t* buffer)
-{
+  {
     uint32_t index;
     uint8_t send_buffer[4];
 
@@ -283,22 +284,30 @@ rt_err_t w25qxx_init(const char * flash_device_name, const char * spi_device_nam
 
     /* init flash */
     {
-        rt_uint8_t cmd;
-        rt_uint8_t id_recv[3];
+        rt_uint8_t cmd,i;
+			  rt_uint8_t id_send[30];
+        rt_uint8_t id_recv[10]={0,0,0,0,0,0,0,0,0,0};
         uint16_t memory_type_capacity;
 
         flash_lock(&spi_flash_device);
-
-        cmd = 0xFF; /* reset SPI FLASH, cancel all cmd in processing. */
+        
+        cmd = 0xFF; /*Disable QPI */
         rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
+				cmd = 0x99; /* reset SPI FLASH, cancel all cmd in processing. */
+        rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);			
+        //cmd = 0x66; /* enable reset SPI FLASH, cancel all cmd in processing. */
+        //rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
+				//cmd = 0x99; /* reset SPI FLASH, cancel all cmd in processing. */
+        //rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
 
         cmd = CMD_WRDI;
         rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
 
         /* read flash id */
         cmd = CMD_JEDEC_ID;
-        rt_spi_send_then_recv(spi_flash_device.rt_spi_device, &cmd, 1, id_recv, 3);
-
+        rt_spi_send_then_recv(spi_flash_device.rt_spi_device, &cmd, 1, id_recv, 10);
+        //cmd = CMD_WREN;
+        //rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
         flash_unlock(&spi_flash_device);
 
         if(id_recv[0] != MF_ID && id_recv[0] != GD_ID)
@@ -323,7 +332,7 @@ rt_err_t w25qxx_init(const char * flash_device_name, const char * spi_device_nam
         else if(memory_type_capacity == MTC_W25Q64_BV_CV)
         {
             FLASH_TRACE("W25Q64BV or W25Q64CV detection\r\n");
-            spi_flash_device.geometry.sector_count = 2048;
+            spi_flash_device.geometry.sector_count = 256;//2048
         }
         else if(memory_type_capacity == MTC_W25Q64_DW)
         {
@@ -360,8 +369,20 @@ rt_err_t w25qxx_init(const char * flash_device_name, const char * spi_device_nam
             FLASH_TRACE("Memory Capacity error!\r\n");
             return -RT_ENOSYS;
         }
-    }
-
+				
+				/*cmd = CMD_EWRSR;
+				rt_spi_send(spi_flash_device.rt_spi_device, &cmd, 1);
+				id_send[0] = CMD_WRSR;
+				id_send[1] = 0;
+				rt_spi_send(spi_flash_device.rt_spi_device, id_send, 1);*/
+						/*for(i = 0;i<30;i++)
+						{
+							id_send[i] = 0x35+i;
+						}
+						 w25qxx_page_write(0,id_send);*/
+			}
+						
+		
     /* register device */
     spi_flash_device.flash_device.type    = RT_Device_Class_Block;
     spi_flash_device.flash_device.init    = w25qxx_flash_init;

@@ -68,7 +68,7 @@ Purpose     : Several GUIDEMO routines
 **********************************************************************
 */
 static const GUI_WIDGET_CREATE_INFO _aFrameWinControl[] = {
-  { FRAMEWIN_CreateIndirect, "Control", 0,                0,  0, 159, 127, 0,          0 },
+  { FRAMEWIN_CreateIndirect, "Control", 0,                0,  0, CONTROL_SIZE_X, CONTROL_SIZE_Y, 0,          0 },
   { BUTTON_CreateIndirect,   "A",    		GUI_ID_HALT,      2, 24, BUTTON_SIZE_X,  BUTTON_SIZE_Y,  0,          0 },
   { BUTTON_CreateIndirect,   "Next",    GUI_ID_NEXT,     36, 24, BUTTON_SIZE_X,  BUTTON_SIZE_Y,  0,          0 }//,
   /*{ PROGBAR_CreateIndirect,  0,         GUI_ID_PROGBAR0,  2, 11, PROGBAR_SIZE_X, PROGBAR_SIZE_Y, WM_CF_HIDE, 0 },
@@ -292,7 +292,6 @@ static void _cbBk(WM_MESSAGE * pMsg) {
 										
 						break;
 					case GUI_KEY_F1:
-						BUTTON_SetFocussable(win_foucus_button[win_foucus_button_x][win_foucus_button_y], 0);
 						if(win_foucus_button_y)
 						{
 							if(win_foucus_button_x == 0)
@@ -438,11 +437,11 @@ static void _cbFrameWinControl(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, GUI_ID_NEXT);
 		win_foucus_button[1][1] = hItem;
     BUTTON_SetFocussable(hItem, 0);
-		//if(win_foucus_button_x)
-		BUTTON_SetFocussable(win_foucus_button[win_foucus_button_x][win_foucus_button_y], 1);
-    /*hItem = WM_GetDialogItem(pMsg->hWin, GUI_ID_TEXT0);
+		if(win_foucus_button_x)
+			BUTTON_SetFocussable(win_foucus_button[win_foucus_button_x][win_foucus_button_y], 1);
+    hItem = WM_GetDialogItem(pMsg->hWin, GUI_ID_TEXT0);
     TEXT_SetText(hItem, "Intro");
-    TEXT_SetFont(hItem, &GUI_Font8_ASCII);*/
+    TEXT_SetFont(hItem, &GUI_Font8_ASCII);
     break;
   case WM_PAINT:
     xSize = WM_GetWindowSizeX(pMsg->hWin);
@@ -540,22 +539,21 @@ static void _Main(void) {
   //
   xSize           = LCD_GetXSize();//
   ySize           = LCD_GetYSize();//
- if(win_foucus_button_x)
-		_hDialogControl = GUI_CreateDialogBox(_aFrameWinControl, GUI_COUNTOF(_aFrameWinControl), &_cbFrameWinControl, WM_HBKWIN, 0, 0);
+ 
+	_hDialogControl = GUI_CreateDialogBox(_aFrameWinControl, GUI_COUNTOF(_aFrameWinControl), &_cbFrameWinControl, WM_HBKWIN, xSize - CONTROL_SIZE_X, ySize - CONTROL_SIZE_Y);
   
 	  //_hDialogInfo    = GUI_CreateDialogBox(_aFrameWinInfo,    GUI_COUNTOF(_aFrameWinInfo),    &_cbFrameWinInfo,    WM_HBKWIN, (xSize >> 1) - 1,       0);
-	else	
-	_hDialogDis 		= GUI_CreateDialogBox(_aFrameWinDis, 		GUI_COUNTOF(_aFrameWinDis), 			&_cbFrameWinDis, WM_HBKWIN, 0, 0);
+		_hDialogDis 		= GUI_CreateDialogBox(_aFrameWinDis, 		GUI_COUNTOF(_aFrameWinDis), 			&_cbFrameWinDis, WM_HBKWIN, 0, 0);
   /*是窗口不可见*/
 	//WM_SetFocus(_hDialogDis);
 	//WM_HideWindow(_hDialogInfo);
   //
   // Show Intro
   ///*   使窗口无效     */
-	//
-		//WM_HideWindow(_hDialogDis);
-	//else
-		//WM_HideWindow(_hDialogControl);
+	if(win_foucus_button_x)
+		WM_HideWindow(_hDialogDis);
+	else
+		WM_HideWindow(_hDialogControl);
 	
   WM_InvalidateWindow(_hDialogDis);
 	/*    禁用存储设备用于重绘       */

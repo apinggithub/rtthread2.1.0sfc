@@ -6,6 +6,7 @@
 #define RT_GUI_NUMBYTES 1024*5
 static struct rt_thread emwin_thread;
 static char emWin_thread_stack[RT_GUI_NUMBYTES];
+char buff[40]="aswffdgfhgjhjhngfgjgfjh";
 #if 1
 void emWin_thread_entry(void *parameter)
 {
@@ -18,7 +19,7 @@ void emWin_thread_entry(void *parameter)
 
 		GUI_SetColor(GUI_WHITE); 
 		GUI_SetFont(GUI_FONT_8X16_ASCII);
-		GUI_DispStringAt("Hello Word!\nasddffgghhjklqpw\nerioetoetu",0,0);
+		GUI_DispStringAt(buff,0,0);
 	while(1)
 	{
 		
@@ -55,7 +56,7 @@ int emwin_system_init(void)
         "emwin",
         emWin_thread_entry, RT_NULL,
         &emWin_thread_stack[0], sizeof(emWin_thread_stack),
-        19, 100);
+        21, 100);
 				
 			/*emwin_thread = rt_thread_create("emwin",
                             emWin_thread_entry,
@@ -69,5 +70,5 @@ int emwin_system_init(void)
     return 0;
 }
 INIT_COMPONENT_EXPORT(emwin_system_init);
-
 #endif
+

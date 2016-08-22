@@ -27,8 +27,6 @@
 // <o> Console on USART: <0=> no console <1=>USART 1 <2=>USART 2 <3=> USART 3
 // 	<i>Default: 1
 #define STM32_CONSOLE_USART     1
-#define RT_USING_HSE
-
 
 #if STM32_CONSOLE_USART == 0
 #define CONSOLE_DEVICE "no"
@@ -58,5 +56,6 @@ extern int __bss_end;
 
 #endif
 extern void rt_hw_board_init(void);
+
 /*<<< Use Configuration Wizard in Context Menu >>>*/
 

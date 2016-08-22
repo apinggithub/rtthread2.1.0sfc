@@ -205,6 +205,8 @@ void 		 LCD_BL_light_On(void);
 void 		 LCD_BL_light_Off(void);
 void 		 hw_lcd_init(void);
 int emwin_system_init(void);
+void st7735_FillRect(uint16_t Color, int x0, int y0, int x1, int y1);
+void st7735_DrawHColorLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length,uint16_t *_pColor);
 /**
   * @}
   */

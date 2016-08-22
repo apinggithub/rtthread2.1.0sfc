@@ -33,6 +33,13 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include "GUI.h"
+
+#ifdef RT_USING_DFS
+#include <dfs_fs.h>
+#include <dfs_init.h>
+#include <dfs_elm.h>
+#endif
+
 #ifdef RT_USING_COMPONENTS_INIT
 /*
  * Components Initialization will initialize some driver and components as following 
@@ -187,7 +194,41 @@ void main_thread_entry(void *parameter)
     // GUI_Init();
     /* RT-Thread components initialization */
     rt_components_init();
-	
+		#if defined(RT_USING_DFS) && defined(RT_USING_DFS_ELMFAT)
+			rt_platform_init();
+			//w25qxx_page_write(0,);
+		/* initialize the device file system */
+		dfs_init();
+
+		/* initialize the elm chan FatFS file system*/
+		elm_init();
+			//dfs_mkfs("elm","sd0");
+			/* mount sd card fat partition 1 as root directory */
+		#ifdef RT_USING_SPI_FLASH
+				if (dfs_mount("sd0", "/", "elm", 0, 0) == 0)
+				{
+						rt_kprintf("File System initialized!\n");
+				}
+				else
+				{
+						rt_kprintf("File System initialzation failed!\n");
+				}
+		#endif
+		#ifdef RT_USING_MSD
+				#if 1
+				dfs_mkfs("elm","sd1");
+				#endif
+				if (dfs_mount("sd1", "/", "elm", 0, 0) == 0)
+				{
+						rt_kprintf("File System initialized!\n");
+				}
+				else
+				{
+					
+							rt_kprintf("File System initialzation failed!\n");
+				}
+				#endif						
+	#endif /* RT_USING_DFS && RT_USING_DFS_ELMFAT */
 
     /* invoke system main function */
 #if defined (__CC_ARM)

@@ -16,6 +16,15 @@ Removing Unused input sections from the image.
     Removing TFT_lcd.o(.rev16_text), (4 bytes).
     Removing TFT_lcd.o(.revsh_text), (4 bytes).
     Removing TFT_lcd.o(.rrx_text), (6 bytes).
+    Removing platform.o(.rev16_text), (4 bytes).
+    Removing platform.o(.revsh_text), (4 bytes).
+    Removing platform.o(.rrx_text), (6 bytes).
+    Removing rt_stm32f40x_spi.o(.rev16_text), (4 bytes).
+    Removing rt_stm32f40x_spi.o(.revsh_text), (4 bytes).
+    Removing rt_stm32f40x_spi.o(.rrx_text), (6 bytes).
+    Removing stm32f4xx_hal_msp.o(.rev16_text), (4 bytes).
+    Removing stm32f4xx_hal_msp.o(.revsh_text), (4 bytes).
+    Removing stm32f4xx_hal_msp.o(.rrx_text), (6 bytes).
     Removing drv_lcd_st7735.o(.rev16_text), (4 bytes).
     Removing drv_lcd_st7735.o(.revsh_text), (4 bytes).
     Removing drv_lcd_st7735.o(.rrx_text), (6 bytes).
@@ -239,10 +248,6 @@ Removing Unused input sections from the image.
     Removing div0.o(.text), (4 bytes).
     Removing showmem.o(.text), (120 bytes).
     Removing showmem.o(.constdata), (18 bytes).
-    Removing spi_core.o(.text), (1544 bytes).
-    Removing spi_core.o(.constdata), (163 bytes).
-    Removing spi_dev.o(.text), (524 bytes).
-    Removing spi_dev.o(.constdata), (129 bytes).
     Removing pipe.o(.text), (1148 bytes).
     Removing pipe.o(.constdata), (86 bytes).
     Removing portal.o(.text), (712 bytes).
@@ -251,6 +256,11 @@ Removing Unused input sections from the image.
     Removing ringbuffer.o(.constdata), (151 bytes).
     Removing workqueue.o(.text), (396 bytes).
     Removing workqueue.o(.constdata), (90 bytes).
+    Removing netdb.o(.text), (640 bytes).
+    Removing netdb.o(.bss), (20 bytes).
+    Removing netdb.o(.conststring), (78 bytes).
+    Removing netdb.o(.data), (20 bytes).
+    Removing sys.o(.text), (36 bytes).
     Removing GUI_X.o(.rev16_text), (4 bytes).
     Removing GUI_X.o(.revsh_text), (4 bytes).
     Removing GUI_X.o(.rrx_text), (6 bytes).
@@ -657,7 +667,6 @@ Removing Unused input sections from the image.
     Removing lcd_readrect.o(i.GUI_ReadRect), (56 bytes).
     Removing lcd_readrect.o(i.LCD_ReadRect), (92 bytes).
     Removing lcd_readrect.o(i.LCD_ReadRectNoClip), (32 bytes).
-    Removing f08_ascii.o(.constdata), (36 bytes).
     Removing f13_ascii.o(.constdata), (36 bytes).
     Removing gui_array_deleteitem.o(i.GUI_ARRAY_DeleteItem), (82 bytes).
     Removing gui_array_resizeitem.o(i.GUI_ARRAY_ResizeItemLocked), (108 bytes).
@@ -690,7 +699,7 @@ Removing Unused input sections from the image.
     Removing lcd_getp.o(i.GUI_GetPixelIndex), (4 bytes).
     Removing wm_getdesktopwindowex.o(i.WM_GetDesktopWindowEx), (20 bytes).
 
-685 unused section(s) (total 41838 bytes) removed from the image.
+694 unused section(s) (total 40278 bytes) removed from the image.
 
 ==============================================================================
 
@@ -700,28 +709,36 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         28          6          0          0     102400        587   GUIConf.o
-      2748        236        205         60         28       9611   GUIDEMO.o
+      2784        244        205         60         28       9631   GUIDEMO.o
         18          0          0          0          0        547   GUIDEMO_Start.o
-      2220         66         52          0          0      59230   GUIDRV_Template.o
+      2124         64         52          0          0      59058   GUIDRV_Template.o
         30          0          0          0          0       1450   GUI_X.o
-       216         72          4          0       5248      18716   GUI_init.o
+       180         36          4         40       5248      18757   GUI_init.o
        132         10          0          0          0       1963   LCDConf_Lin_Template.o
        844         28          0          4         88       3371   TFT_lcd.o
-       336         24          0          0          0     352416   board.o
+      3120        826         80          0          0      34306   api_lib.o
+      6180       1206         80          0          0      23351   api_msg.o
+       320         26          0          0          0     352424   board.o
        100          6          0          4          0       1588   clock.o
       3012       1244       1104          4          0      10611   cmd.o
        456        124         57          0          0       3003   completion.o
-       216         42         36          0          0      50878   components.o
+       336        118         36          0          0      55698   components.o
        268         24          0          0          0        872   context_rvds.o
        400        188         19         16          0       3771   cpuport.o
       1044        114         75          0          0       6473   dataqueue.o
+        62          0          0          0          0       1306   def.o
        804        132        168          0          0       4981   device.o
        936        130         39          0        212       9071   dfs.o
-      2484        356        143          0        292      13851   dfs_file.o
+      2664        228        261          8          0      17626   dfs_elm.o
+      2484        356        143          0        292       9183   dfs_file.o
       1520        264        116          0          0       5912   dfs_fs.o
       1512         50         37          0          0       9927   dfs_posix.o
-      1284          4          0          0        640       4944   drv_lcd_st7735.o
-      1308        138         76          0        152      36587   drv_usart.o
+      1820        222         77         20       1635       8328   dns.o
+      1480          6          0          0        640       5818   drv_lcd_st7735.o
+      1308        138         76          0        152      38379   drv_usart.o
+      3652        560        161          1        200      10931   etharp.o
+      2332        740        373          0       1408      21890   ethernetif.o
+      9480        142         44         10          0      25593   ff.o
       6168        154          0          8          0      10998   finsh_compiler.o
         44         10        243         64          0       1741   finsh_error.o
        528         18          0          8        128       3463   finsh_heap.o
@@ -731,36 +748,62 @@ Image component sizes
       2428         32          0          0          0       9845   finsh_parser.o
       1664         16        126          0          0       6292   finsh_token.o
        412         18          0          4        192       7501   finsh_var.o
-       228         34          0         12        384       7126   finsh_vm.o
+       228         34          0         12        384       7130   finsh_vm.o
+       932        292         83          0          0       2635   icmp.o
        308         74         22          4       1152       2955   idle.o
+       592         18         90          0          0       3301   inet_chksum.o
+        32          0          0          0          0      15556   init.o
+       844         94         81         18          0       6595   ip.o
+       728         26         94          0         16       9883   ip_addr.o
       5716        422        471          0          0      20223   ipc.o
         72          6          0          1          0       1426   irq.o
       2636        230        290         12        128      12004   kservice.o
          4          0          0          0          0      11051   main.o
-      2164        560        358         32         32      11178   mem.o
+      2164        560        358         32         32       9726   mem.o
+         0          0         28          0          0       1257   memp.o
+       884        268         79          0          0       8305   netbuf.o
+         0          0          0          0          0       2992   netdb.o
+       680         50         79          9          0      16058   netif.o
+       248          0          0          0          0       9032   netifapi.o
        732        150         94        164          0       5844   object.o
+      3932       1108         78          1          0      10363   pbuf.o
+       356         52          0          8        188       2195   platform.o
+       496         60         77          4          0       3713   raw.o
+       740         32          0          8        200       4773   rt_stm32f40x_spi.o
        736        150         78         28        256       4805   scheduler.o
       2180        314        211          0          0       7965   serial.o
       2532        276        100          4       2176       6199   shell.o
+      7168        598        144          8         96      35041   sockets.o
+      1544        114        163          0          0       5846   spi_core.o
+       524        148        129          0          0       3547   spi_dev.o
+      1588        466         39          0        116       8452   spi_flash_w25qxx.o
         64         26        392          0       3072        852   startup_stm32f407xx.o
        416         26          0          4          0       4814   stm32f4xx_hal.o
        796         20          0          0          0      32199   stm32f4xx_hal_cortex.o
       1560         16          8          0          0       5112   stm32f4xx_hal_dma.o
        964         50          0          0          0       3747   stm32f4xx_hal_gpio.o
+        64         16          0          0          0       1120   stm32f4xx_hal_msp.o
          8          0          0          0          0        818   stm32f4xx_hal_msp_template.o
       2620         64         16          0          0       5666   stm32f4xx_hal_rcc.o
       5528         54          0          0          0      13748   stm32f4xx_hal_spi.o
       3918         28          0          0          0      12779   stm32f4xx_hal_uart.o
         16          0          0          0          0        856   stm32f4xx_it.o
          0          0          0         16          0       4333   symbol.o
+      1876        326        265          6          0      12760   sys_arch.o
        288         32         16          4          0       1747   system_stm32f4xx.o
+      5200       1070        277         36          0      22924   tcp.o
+      7308       1002         80         32         16      16691   tcp_in.o
+      4512        802        169          0          0      10263   tcp_out.o
+       932        116         78         12          0      18218   tcpip.o
       1436        208        170          0          0       7669   thread.o
       1116        100         92         16          0       6963   timer.o
+       644        100         80          8          0       4603   timers.o
+      1304        130         77          8          0       7606   udp.o
 
     ----------------------------------------------------------------------
-     72458       6392       5056        472     116900     856379   Object Totals
+    145102      17254       8364        716     120776    1244706   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         4          0         10          3          0          0   (incl. Padding)
+         6          0         52         10          1          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -773,7 +816,7 @@ Image component sizes
        568          6         16        128          0        140   button_skinflex.o
        164          0          0          0          0        136   dialog.o
          0          0       1592          0          0          0   f08_1.o
-         0          0       1532          0          0          0   f08_ascii.o
+         0          0       1568          0          0          0   f08_ascii.o
          0          0       2155          0          0          0   f13_1.o
          0          0       2046          0          0          0   f13_ascii.o
          0          0       2720          0          0          0   f16_ascii.o
@@ -937,6 +980,7 @@ Image component sizes
        504         12          0         12          0        504   slider_skin.o
        318          0         12          0          0        256   slider_skinclassic.o
       1006          4          0         88          0        684   slider_skinflex.o
+        36          0          0          0          0        128   text_setfont.o
         74          0          0          0          0        128   text_settext.o
        968          4          0          4          0       2160   widget.o
        284          8         28         20          0        532   widget_effect_3d.o
@@ -1008,6 +1052,7 @@ Image component sizes
         52          8          0          0          0          0   __scatter.o
         28          0          0          0          0          0   __scatter_zi.o
         28          0          0          0          0         68   _chval.o
+         0          0         12          0          0          0   _monlen.o
         22          0          0          0          0        100   _rserrno.o
        158          0          0          0          0         92   _strtoul.o
         16          0          0          0          0         68   aeabi_memset.o
@@ -1021,6 +1066,8 @@ Image component sizes
          2          0          0          0          0          0   libshutdown.o
          2          0          0          0          0          0   libshutdown2.o
          8          4          0          0         96         68   libspace.o
+        88          0          0          0          0         76   memcmp.o
+       424         10          0          0          0        124   mktime.o
         16          4          0          0          0         76   rt_ctype_table.o
          8          4          0          0          0         68   rt_errno_addr_intlibspace.o
          8          4          0          0          0         68   rt_locale_intlibspace.o
@@ -1054,20 +1101,20 @@ Image component sizes
        122          0          0          0          0        148   sqrt.o
 
     ----------------------------------------------------------------------
-     55978       2020      16084       1168        740      81556   Library Totals
+     56526       2030      16132       1168        740      81884   Library Totals
        152          0          6          8          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-     52830       1910      15806       1160        640      78088   STemWin522_CM4_Keil.lib
-      1954         38        272          0         96       2260   c_w.l
+     52866       1910      15842       1160        640      78216   STemWin522_CM4_Keil.lib
+      2466         48        284          0         96       2460   c_w.l
        920         72          0          0          0       1060   fz_wm.l
        122          0          0          0          0        148   m_wm.l
 
     ----------------------------------------------------------------------
-     55978       2020      16084       1168        740      81556   Library Totals
+     56526       2030      16132       1168        740      81884   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1076,15 +1123,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-    128436       8412      21140       1640     117640     864635   Grand Totals
-    128436       8412      21140        664     117640     864635   ELF Image Totals (compressed)
-    128436       8412      21140        664          0          0   ROM Totals
+    201628      19284      24496       1884     121516    1247186   Grand Totals
+    201628      19284      24496        708     121516    1247186   ELF Image Totals (compressed)
+    201628      19284      24496        708          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               149576 ( 146.07kB)
-    Total RW  Size (RW Data + ZI Data)            119280 ( 116.48kB)
-    Total ROM Size (Code + RO Data + RW Data)     150240 ( 146.72kB)
+    Total RO  Size (Code + RO Data)               226124 ( 220.82kB)
+    Total RW  Size (RW Data + ZI Data)            123400 ( 120.51kB)
+    Total ROM Size (Code + RO Data + RW Data)     226832 ( 221.52kB)
 
 ==============================================================================
 

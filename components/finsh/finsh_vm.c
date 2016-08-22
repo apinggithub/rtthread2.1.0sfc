@@ -60,7 +60,7 @@ void finsh_vm_run()
 	/* set pc to the beginning of text segment */
 	finsh_pc = &text_segment[0];
 
-	while ((finsh_pc - &text_segment[0] >= 0) &&
+  	while ((finsh_pc - &text_segment[0] >= 0) &&
 		(finsh_pc - &text_segment[0] < FINSH_TEXT_MAX))
 	{
 		/* get op */

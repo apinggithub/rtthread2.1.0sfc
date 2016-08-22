@@ -521,6 +521,8 @@ void rt_assert_set_hook(void (*hook)(const char* ex, const char* func, rt_size_t
 void rt_assert_handler(const char* ex, const char* func, rt_size_t line);
 #endif /* RT_DEBUG */
 
+void rt_platform_init(void);
+
 /*@}*/
 
 #ifdef __cplusplus
