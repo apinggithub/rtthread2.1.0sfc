@@ -68,15 +68,15 @@
 //#define RT_USING_UART3
 
 /*Using STemwin GUI */
-#define RT_USING_EMWIN
+//#define RT_USING_EMWIN
 //#define RT_USING_EMWIN_DEMO
 /*using lcd*/
-#define RT_USING_LCD
+//#define RT_USING_LCD
 
 #define RT_USING_SPI
 #define RT_USING_W25QXX
 #define RT_USING_SPI3
-#define RT_USING_SPI_FLASH
+//#define RT_USING_SPI_FLASH
 #define RT_USING_MSD
 //#define RT_USING_SPI2
 //#define RT_USING_SPI1
@@ -88,7 +88,7 @@
 
 /* SECTION: device filesystem */
 /* Using Device file system */
- #define RT_USING_DFS 
+#define RT_USING_DFS 
  
 /* the max number of mounted filesystem */
 #define DFS_FILESYSTEMS_MAX			2
@@ -99,7 +99,7 @@
 #define RT_USING_DFS_ELMFAT
 #define RT_DFS_ELM_WORD_ACCESS
 /* Reentrancy (thread safe) of the FatFs module.  */
-#define RT_DFS_ELM_REENTRANT
+//#define RT_DFS_ELM_REENTRANT
 /* Number of volumes (logical drives) to be used. */
 #define RT_DFS_ELM_DRIVES			2
 //#define RT_DFS_ELM_USE_LFN			1 

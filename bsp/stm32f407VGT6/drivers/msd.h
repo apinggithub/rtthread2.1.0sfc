@@ -19,6 +19,8 @@
 #include <stdint.h>
 #include <drivers/spi.h>
 
+
+//#define MSD_WRITHER_OTHER
 /* SD command (SPI mode) */
 #define GO_IDLE_STATE                       0   /* CMD0  R1  */
 #define SEND_OP_COND                        1   /* CMD1  R1  */
@@ -88,8 +90,8 @@
 
 /* card try timeout, unit: ms */
 #define CARD_TRY_TIMES                      3000
-#define CARD_TRY_TIMES_ACMD41               800
-#define CARD_WAIT_TOKEN_TIMES               800
+#define CARD_TRY_TIMES_ACMD41               2000
+#define CARD_WAIT_TOKEN_TIMES               2000
 
 #define MSD_USE_PRE_ERASED                              /**< id define MSD_USE_PRE_ERASED, before CMD25, send ACMD23 */
 

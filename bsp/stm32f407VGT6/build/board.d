@@ -39,5 +39,3 @@
 .\build\board.o: Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h
 .\build\board.o: Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h
 .\build\board.o: drivers\drv_usart.h
-.\build\board.o: drivers\drv_lcd_st7735.h
-.\build\board.o: drivers\lcd_user.h

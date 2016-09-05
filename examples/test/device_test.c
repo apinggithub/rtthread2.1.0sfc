@@ -54,10 +54,10 @@ static rt_err_t _block_device_test(rt_device_t device)
         // device can read and write.
         // step 1: open device
         result = rt_device_open(device,RT_DEVICE_FLAG_RDWR);
-        if( result != RT_EOK )
+       /* if( result != RT_EOK )
         {
             return result;
-        }
+        }*/
 
         // step 2: get device info
         rt_memset(&geometry, 0, sizeof(geometry));

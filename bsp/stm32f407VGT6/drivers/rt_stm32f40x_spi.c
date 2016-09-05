@@ -114,7 +114,7 @@ rt_inline uint16_t get_spi_BaudRatePrescaler(rt_uint32_t max_hz)
     }
     else if(max_hz >= SystemCoreClock/8)
     {
-        SPI_BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+        SPI_BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
     }
     else if(max_hz >= SystemCoreClock/16)
     {
@@ -192,7 +192,6 @@ static rt_err_t configure(struct rt_spi_device* device, struct rt_spi_configurat
     {
         hspi.Init.FirstBit = SPI_FIRSTBIT_LSB;
     }
-    ;
 		hspi.Init.Mode = SPI_MODE_MASTER;
 		hspi.Init.Direction = SPI_DIRECTION_2LINES;
 		hspi.Init.NSS = SPI_NSS_SOFT;
@@ -313,31 +312,6 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
         {
             const rt_uint8_t * send_ptr = message->send_buf;
             rt_uint8_t * recv_ptr = message->recv_buf;
-						//HAL_StatusTypeDef status = HAL_OK;
-           /* while(size--)
-            {
-                rt_uint16_t data = 0xFF;
-
-                if(send_ptr != RT_NULL)
-                {
-                    data = *send_ptr++;
-                }
-
-                //Wait until the transmit buffer is empty
-                while (SPI_I2S_GetFlagStatus(SPI, SPI_I2S_FLAG_TXE) == RESET);
-                // Send the byte
-                SPI_I2S_SendData(SPI, data);
-
-                //Wait until a data is received
-                while (SPI_I2S_GetFlagStatus(SPI, SPI_I2S_FLAG_RXNE) == RESET);
-                // Get the received data
-                data = SPI_I2S_ReceiveData(SPI);
-
-                if(recv_ptr != RT_NULL)
-                {
-                    *recv_ptr++ = data;
-                }
-            }*/
 						
 						 if(send_ptr != RT_NULL)
 								HAL_SPI_Transmit(&hspi,(uint8_t*)send_ptr,size, 1000);
@@ -345,12 +319,6 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
 							if(recv_ptr != RT_NULL)
 							{
 								HAL_SPI_Receive(&hspi,recv_ptr,size, 1000);
-								/*uint8_t i=1;
-								while(size--)
-								{
-									*recv_ptr++ = recv[i];
-									i++;
-								}*/
 							}
         }
     }

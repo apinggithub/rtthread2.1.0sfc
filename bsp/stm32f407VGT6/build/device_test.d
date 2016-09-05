@@ -1,0 +1,13 @@
+.\build\device_test.o: ..\..\examples\test\device_test.c
+.\build\device_test.o: ..\..\include\rtthread.h
+.\build\device_test.o: .\rtconfig.h
+.\build\device_test.o: ..\..\include\rtdebug.h
+.\build\device_test.o: ..\..\include\rtdef.h
+.\build\device_test.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\build\device_test.o: ..\..\include\rtservice.h
+.\build\device_test.o: ..\..\include\rtm.h
+.\build\device_test.o: ..\..\include\rtthread.h
+.\build\device_test.o: ..\..\components\finsh\finsh.h
+.\build\device_test.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+.\build\device_test.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\build\device_test.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

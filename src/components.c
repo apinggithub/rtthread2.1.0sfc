@@ -194,8 +194,9 @@ void main_thread_entry(void *parameter)
     // GUI_Init();
     /* RT-Thread components initialization */
     rt_components_init();
+		rt_platform_init();
 		#if defined(RT_USING_DFS) && defined(RT_USING_DFS_ELMFAT)
-			rt_platform_init();
+			//rt_platform_init();
 			//w25qxx_page_write(0,);
 		/* initialize the device file system */
 		dfs_init();

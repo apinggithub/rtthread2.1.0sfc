@@ -442,11 +442,6 @@
               <FilePath>drivers\drv_usart.c</FilePath>
             </File>
             <File>
-              <FileName>TFT_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>drivers\TFT_lcd.c</FilePath>
-            </File>
-            <File>
               <FileName>platform.c</FileName>
               <FileType>1</FileType>
               <FilePath>drivers\platform.c</FilePath>
@@ -457,19 +452,14 @@
               <FilePath>drivers\rt_stm32f40x_spi.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>drivers\stm32f4xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>drv_lcd_st7735.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>drivers\drv_lcd_st7735.c</FilePath>
-            </File>
-            <File>
               <FileName>msd.c</FileName>
               <FileType>1</FileType>
               <FilePath>drivers\msd.c</FilePath>
+            </File>
+            <File>
+              <FileName>device_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\examples\test\device_test.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1085,51 +1075,6 @@
               <FileName>finsh_token.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\finsh\finsh_token.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>StemWin</GroupName>
-          <Files>
-            <File>
-              <FileName>GUIConf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\Config\GUIConf.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDRV_Template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\Config\GUIDRV_Template.c</FilePath>
-            </File>
-            <File>
-              <FileName>LCDConf_Lin_Template.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\Config\LCDConf_Lin_Template.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUI_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\Config\GUI_init.c</FilePath>
-            </File>
-            <File>
-              <FileName>Lib_STemWin522_CM4_Keil.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\..\components\Stemwin\Lib\STemWin522_CM4_Keil.lib</FilePath>
-            </File>
-            <File>
-              <FileName>GUI_X.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\OS\GUI_X.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\emWinDemo\GUIDEMO.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Start.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\Stemwin\emWinDemo\GUIDEMO_Start.c</FilePath>
             </File>
           </Files>
         </Group>

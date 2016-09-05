@@ -48,7 +48,7 @@ void st7735_FillRect(uint16_t Color, int x0, int y0, int x1, int y1)
     for(m=0;m<(y1-y0+1);m++)
     {	
 	  	LCD_IO_WriteData(Color>>8);
-			LCD_IO_WriteData(Color);
+ 			LCD_IO_WriteData(Color);
     }
 }
 
