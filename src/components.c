@@ -216,7 +216,7 @@ void main_thread_entry(void *parameter)
 				}
 		#endif
 		#ifdef RT_USING_MSD
-				#if 1
+				#if 0
 				dfs_mkfs("elm","sd1");
 				#endif
 				if (dfs_mount("sd1", "/", "elm", 0, 0) == 0)

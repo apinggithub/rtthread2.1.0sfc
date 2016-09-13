@@ -22,11 +22,14 @@
  *
  * CS0: PA4  SD card.
  */
+ #ifdef  RT_USING_SPI_FLASH
  static struct rt_spi_device spi_device_flash;
  static struct stm32_spi_cs  spi_flash_cs;
+ #endif
+ #ifdef	RT_USING_MSD
  static struct rt_spi_device spi_device_sd;
  static struct stm32_spi_cs  spi_sd_cs;
-
+#endif
 static void rt_hw_spi_init(void)
 {
 
@@ -123,12 +126,12 @@ void rt_platform_init(void)
 					GPIO_InitTypeDef  GPIO_InitStruct;
 
 					GPIO_InitStruct.Pin = GPIO_PIN_3;
-					GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+					GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
 					GPIO_InitStruct.Pull = GPIO_NOPULL;
 					GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
 					HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 					
-					HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, GPIO_PIN_RESET);
+					//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, GPIO_PIN_SET);
 					rt_thread_delay(2);
 					msd_init("sd1", "spi_msd");
 				#endif

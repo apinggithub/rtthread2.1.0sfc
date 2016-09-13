@@ -284,8 +284,8 @@ rt_err_t w25qxx_init(const char * flash_device_name, const char * spi_device_nam
 
     /* init flash */
     {
-        rt_uint8_t cmd,i;
-			  rt_uint8_t id_send[30];
+        rt_uint8_t cmd;
+			  //rt_uint8_t id_send[30];
         rt_uint8_t id_recv[10]={0,0,0,0,0,0,0,0,0,0};
         uint16_t memory_type_capacity;
 

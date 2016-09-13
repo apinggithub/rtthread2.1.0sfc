@@ -86,12 +86,12 @@
 #define MSD_CMD_LEN                         6           /**< command, arg and crc. */
 #define MSD_RESPONSE_MAX_LEN                5           /**< response max len  */
 #define MSD_CSD_LEN                         16          /**< SD crad CSD register len */
-#define SECTOR_SIZE                         512         /**< sector size, default 512byte */
+#define SECTOR_SIZE                         512        /**< sector size, default 512byte */
 
 /* card try timeout, unit: ms */
-#define CARD_TRY_TIMES                      3000
+#define CARD_TRY_TIMES                      1000
 #define CARD_TRY_TIMES_ACMD41               2000
-#define CARD_WAIT_TOKEN_TIMES               2000
+#define CARD_WAIT_TOKEN_TIMES               800
 
 #define MSD_USE_PRE_ERASED                              /**< id define MSD_USE_PRE_ERASED, before CMD25, send ACMD23 */
 

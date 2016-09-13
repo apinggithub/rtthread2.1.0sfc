@@ -96,9 +96,13 @@ static rt_err_t _block_device_test(rt_device_t device)
             i = rt_device_read(device, 0, read_buffer, 1);
             if(i != 1)
             {
-                rt_kprintf("read device :%s ", device->parent.name);
-                rt_kprintf("the first sector failed.\r\n");
-                goto __return;
+							 i = rt_device_read(device, 0, read_buffer, 1);
+							if(i != 1)
+							{
+									rt_kprintf("read device :%s ", device->parent.name);
+									rt_kprintf("the first sector failed.\r\n");
+									goto __return;
+							}
             }
 
             data_point = write_buffer;

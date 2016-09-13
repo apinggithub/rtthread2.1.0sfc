@@ -58,7 +58,7 @@ static void fsrw1_thread_entry(void* parameter)
         /* plan write data */
         for (index = 0; index < fsrw1_data_len; index ++)
         {
-            write_data1[index] = index;
+            write_data1[index] =0x77; //index;
         }
 
         /* write 10 times */
@@ -123,7 +123,7 @@ static void fsrw1_thread_entry(void* parameter)
 
         rt_kprintf("thread fsrw1 round %d ",round++);
         rt_kprintf("rd:%dbyte/s,wr:%dbyte/s\r\n",read_speed,write_speed);
-
+        rt_thread_delay(2000);
         /* close file */
         close(fd);
 				if(round >10) return;
@@ -131,8 +131,8 @@ static void fsrw1_thread_entry(void* parameter)
     }
 }
 
-#define fsrw2_fn                   "/test2.dat"
-#define fsrw2_data_len             180              /* Less than 256 */
+#define fsrw2_fn                   "/test2.txt"
+#define fsrw2_data_len             150              /* Less than 256 */
 static void fsrw2_thread_entry(void* parameter)
 {
     int fd;

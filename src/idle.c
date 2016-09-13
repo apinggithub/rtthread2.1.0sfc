@@ -183,7 +183,7 @@ static void rt_thread_idle_entry(void *parameter)
             rt_thread_idle_hook();
         #endif
 
-        rt_thread_idle_excute();
+            rt_thread_idle_excute();
     }
 }
 

@@ -114,7 +114,7 @@ rt_inline uint16_t get_spi_BaudRatePrescaler(rt_uint32_t max_hz)
     }
     else if(max_hz >= SystemCoreClock/8)
     {
-        SPI_BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+        SPI_BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
     }
     else if(max_hz >= SystemCoreClock/16)
     {
@@ -150,6 +150,8 @@ static rt_err_t configure(struct rt_spi_device* device, struct rt_spi_configurat
 	
     //SPI_StructInit(&hspi.Init);
     /* data_width */
+	
+		
 	#if 1
     if(configuration->data_width <= 8)
     {
@@ -204,10 +206,8 @@ static rt_err_t configure(struct rt_spi_device* device, struct rt_spi_configurat
     /* init SPI */
     //HAL_SPI_DeInit(&hspi);
 		HAL_SPI_Init(&hspi3);
-    //SPI_Init(stm32_spi_bus->SPI, &hspi.Init);
-    /* Enable SPI_MASTER */
-    //SPI_Cmd(stm32_spi_bus->SPI, ENABLE);
-    //SPI_CalculateCRC(stm32_spi_bus->SPI, DISABLE);
+		//__HAL_SPI_DISABLE(&hspi3);
+    __HAL_SPI_ENABLE(&hspi3);
 		SPIx = stm32_spi_bus->SPI;
 		if(SPI1 == SPIx)
 			__HAL_RCC_SPI1_CLK_ENABLE();
@@ -237,8 +237,9 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
     /* take CS */
     if(message->cs_take)
     {
+			  //__HAL_SPI_ENABLE(&hspi);
         HAL_GPIO_WritePin(stm32_spi_cs->GPIOx, stm32_spi_cs->GPIO_Pin,GPIO_PIN_RESET);
-			
+			  
     }
     
 #ifdef SPI_USE_DMA
@@ -262,24 +263,24 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
     {
         if(config->data_width <= 8)
         {
-            const rt_uint8_t* send_ptr = message->send_buf;
+            rt_uint8_t* send_ptr = (rt_uint8_t*)(message->send_buf);
 					  //const rt_uint8_t  send_ptr1 = message->send_buf;
             rt_uint8_t*  recv_ptr =    message->recv_buf;
               #if 0
 					   
 					    if((send_ptr != RT_NULL)&&(recv_ptr != RT_NULL))
-									HAL_SPI_TransmitReceive(&hspi,(uint8_t*)send_ptr,message->recv_buf,size, 100);
+									HAL_SPI_TransmitReceive(&hspi,send_ptr,message->recv_buf,size, 1000);
 							else if(send_ptr != RT_NULL)
 							{
-								HAL_SPI_Transmit(&hspi,(uint8_t*)send_ptr,size, 100);
+								HAL_SPI_Transmit(&hspi,send_ptr,size, 1000);
 									//HAL_SPI_TransmitReceive(&hspi,(uint8_t*)send_ptr,recv,5, 1000);//size
 							}
 							else if(recv_ptr != RT_NULL)
 							{
-								HAL_SPI_Receive(&hspi,recv_ptr,size, 100);
+								HAL_SPI_Receive(&hspi,recv_ptr,size, 1000);
 							}
 							#else
-					    __HAL_SPI_ENABLE(&hspi);
+					   // __HAL_SPI_ENABLE(&hspi);
 					    while(size--)
 							{
 									rt_uint8_t data = 0xFF;
@@ -327,6 +328,7 @@ static rt_uint32_t xfer(struct rt_spi_device* device, struct rt_spi_message* mes
     if(message->cs_release)
     {
         HAL_GPIO_WritePin(stm32_spi_cs->GPIOx, stm32_spi_cs->GPIO_Pin,GPIO_PIN_SET);
+			 //__HAL_SPI_DISABLE(&hspi);
     }
 
     return message->length;

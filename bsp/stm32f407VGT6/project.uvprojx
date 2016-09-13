@@ -457,9 +457,9 @@
               <FilePath>drivers\msd.c</FilePath>
             </File>
             <File>
-              <FileName>device_test.c</FileName>
+              <FileName>fs_test.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\examples\test\device_test.c</FilePath>
+              <FilePath>.\drivers\fs_test.c</FilePath>
             </File>
           </Files>
         </Group>
