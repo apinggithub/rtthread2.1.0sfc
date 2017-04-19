@@ -21,8 +21,8 @@ static rt_uint32_t stop_flag = 0;
 static rt_thread_t fsrw1_thread = RT_NULL;
 static rt_thread_t fsrw2_thread = RT_NULL;
 
-#define fsrw1_fn                   "/test1.dat"
-#define fsrw1_data_len             120               /* Less than 256 */
+#define fsrw1_fn                   "/A1.dat"
+#define fsrw1_data_len             40960              /* Less than 256 */
 static void fsrw1_thread_entry(void* parameter)
 {
     int fd;
@@ -58,7 +58,7 @@ static void fsrw1_thread_entry(void* parameter)
         /* plan write data */
         for (index = 0; index < fsrw1_data_len; index ++)
         {
-            write_data1[index] =0x77; //index;
+            write_data1[index] =57; //index;
         }
 
         /* write 10 times */

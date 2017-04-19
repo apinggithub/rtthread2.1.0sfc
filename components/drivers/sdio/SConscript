@@ -3,16 +3,17 @@ from building import *
 
 cwd = GetCurrentDir()
 src = Split("""
-block_dev.c
-mmcsd_core.c
-sd.c
-sdio.c
-mmc.c
 """)
-
+if GetDepend('RT_USING_SPI_MSD'):
+    src += ['spi_msd.c']
+if GetDepend('RT_USING_SDIO'):
+    src += ['sd.c','spi_sdio.c']	
+if GetDepend('RT_USING_MMCSD'):
+    src += ['mmcsd_core.c','mmc.c','block_dev.c']
+	
 # The set of source files associated with this SConscript file.
 path = [cwd + '/../include']
 
-group = DefineGroup('DeviceDrivers', src, depend = ['RT_USING_SDIO'], CPPPATH = path)
+group = DefineGroup('DeviceDrivers', src, depend = ['RT_USING_SPI_MSD'], CPPPATH = path)
 
 Return('group')

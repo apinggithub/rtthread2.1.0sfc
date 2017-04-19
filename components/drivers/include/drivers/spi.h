@@ -231,7 +231,7 @@ rt_inline rt_uint8_t rt_spi_sendrecv8(struct rt_spi_device *device,
 {
     rt_uint8_t value;
 
-    rt_spi_send_then_recv(device, &data, 1, &value, 1);
+    rt_spi_send_then_recv(device, &data, 1, (void *)&value, 1);
 
     return value;
 }
@@ -241,7 +241,7 @@ rt_inline rt_uint16_t rt_spi_sendrecv16(struct rt_spi_device *device,
 {
     rt_uint16_t value;
 
-    rt_spi_send_then_recv(device, &data, 2, &value, 2);
+    rt_spi_send_then_recv(device, &data, 2, (void*)&value, 2);
 
     return value;
 }

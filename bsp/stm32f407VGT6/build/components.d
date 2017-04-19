@@ -8,13 +8,6 @@
 .\build\components.o: ..\..\include\rtservice.h
 .\build\components.o: ..\..\include\rtm.h
 .\build\components.o: ..\..\include\rtthread.h
-.\build\components.o: ..\..\components\STemwin\inc\GUI.h
-.\build\components.o: ..\..\components\STemwin\inc\GUI_ConfDefaults.h
-.\build\components.o: ..\..\components\STemwin\Config\GUIConf.h
-.\build\components.o: ..\..\components\STemwin\inc\GUI_Type.h
-.\build\components.o: ..\..\components\STemwin\inc\LCD.h
-.\build\components.o: ..\..\components\STemwin\inc\Global.h
-.\build\components.o: ..\..\components\STemwin\inc\GUI_Version.h
 .\build\components.o: ..\..\components\dfs\include\dfs_fs.h
 .\build\components.o: ..\..\components\dfs\include\dfs_def.h
 .\build\components.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

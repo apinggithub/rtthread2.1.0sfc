@@ -71,13 +71,14 @@
 //#define RT_USING_EMWIN
 //#define RT_USING_EMWIN_DEMO
 /*using lcd*/
-//#define RT_USING_LCD
+//#define RT_USING_SPI_LCD
 
 #define RT_USING_SPI
-#define RT_USING_W25QXX
 #define RT_USING_SPI3
-//#define RT_USING_SPI_FLASH
-#define RT_USING_MSD
+#define RT_USING_SPI_FLASH
+#define RT_USING_W25QXX
+#define RT_USING_SPI_MSD
+
 //#define RT_USING_SPI2
 //#define RT_USING_SPI1
 //#define RT_USING_SPI1_LCD
@@ -105,7 +106,7 @@
 //#define RT_DFS_ELM_USE_LFN			1 
 #define RT_DFS_ELM_MAX_LFN			255
 /* Maximum sector size to be handled. */
-#define RT_DFS_ELM_MAX_SECTOR_SIZE  512
+#define RT_DFS_ELM_MAX_SECTOR_SIZE  4096
 
 /* Using ROM file system */
 //#define RT_USING_DFS_ROMFS

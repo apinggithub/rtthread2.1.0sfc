@@ -43,7 +43,7 @@
 .\build\platform.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\build\platform.o: ..\..\components\drivers\include\drivers/serial.h
 .\build\platform.o: ..\..\include\rthw.h
-.\build\platform.o: drivers\rt_stm32f40x_spi.h
+.\build\platform.o: drivers\drv_stm32f40x_spi.h
 .\build\platform.o: drivers\board.h
-.\build\platform.o: drivers\msd.h
+.\build\platform.o: ..\..\components\drivers\include\drivers/spi_msd.h
 .\build\platform.o: ..\..\components\drivers\spi\spi_flash_w25qxx.h

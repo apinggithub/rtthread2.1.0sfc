@@ -32,7 +32,7 @@
 
 #include <rthw.h>
 #include <rtthread.h>
-#include "GUI.h"
+//#include "GUI.h"
 
 #ifdef RT_USING_DFS
 #include <dfs_fs.h>
@@ -208,27 +208,26 @@ void main_thread_entry(void *parameter)
 		#ifdef RT_USING_SPI_FLASH
 				if (dfs_mount("sd0", "/", "elm", 0, 0) == 0)
 				{
-						rt_kprintf("File System initialized!\n");
+					rt_kprintf("SPI Flash File System initialized,OK!\r\n");
 				}
 				else
 				{
-						rt_kprintf("File System initialzation failed!\n");
+					rt_kprintf("SPI Flash File System initialzation failed!\r\n");
 				}
 		#endif
-		#ifdef RT_USING_MSD
+		#ifdef RT_USING_SPI_MSD
 				#if 0
 				dfs_mkfs("elm","sd1");
 				#endif
-				if (dfs_mount("sd1", "/", "elm", 0, 0) == 0)
+				if (dfs_mount("sd1", "/dev", "elm", 0, 0) == 0)
 				{
-						rt_kprintf("File System initialized!\n");
+					rt_kprintf("MSD File System initialized,OK!\r\n");
 				}
 				else
-				{
-					
-							rt_kprintf("File System initialzation failed!\n");
+				{					
+					rt_kprintf("MSD File System initialzation failed!\r\n");
 				}
-				#endif						
+		#endif 						
 	#endif /* RT_USING_DFS && RT_USING_DFS_ELMFAT */
 
     /* invoke system main function */

@@ -248,7 +248,7 @@ rt_err_t rt_spi_send_then_recv(struct rt_spi_device *device,
             goto __exit;
         }
 
-        result = RT_EOK;
+        result = -RT_EOK;
     }
     else
     {

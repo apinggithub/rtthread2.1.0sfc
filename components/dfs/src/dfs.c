@@ -380,7 +380,7 @@ char *dfs_normalize_path(const char *directory, const char *filename)
 
         if (c == '/')
         {
-            *dst ++ = '/';
+            *dst++ = '/';
             while (c == '/')
                 c = *src++;
 

@@ -116,7 +116,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
     PC12     ------> SPI3_MOSI 
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_15);
-		HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2|GPIO_PIN_3);
+	HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2|GPIO_PIN_3);
     HAL_GPIO_DeInit(GPIOC, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12);
 
   }
