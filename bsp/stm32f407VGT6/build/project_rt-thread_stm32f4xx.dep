@@ -124,7 +124,7 @@ I (..\..\include\rtdef.h)(0x571CB880)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (..\..\include\rthw.h)(0x571CB880)
@@ -167,7 +167,7 @@ I (Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x578B886A)
 I (Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x571CB880)
 I (Libraries\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (..\..\include\rthw.h)(0x571CB880)
@@ -214,7 +214,7 @@ I (..\..\include\rtdef.h)(0x571CB880)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x578CA6AE)
@@ -2534,7 +2534,7 @@ I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\dfs\filesystems\elmfat\integer.h)(0x571CB880)
 I (..\..\components\dfs\filesystems\elmfat\ffconf.h)(0x57C83A79)
 I (..\..\components\dfs\filesystems\elmfat\diskio.h)(0x57C80280)
-F (..\..\components\drivers\sdio\spi_msd.c)(0x58F5CC86)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\spi_msd.o --omf_browse .\build\spi_msd.crf --depend .\build\spi_msd.d)
+F (..\..\components\drivers\sdio\spi_msd.c)(0x58F71E0E)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\spi_msd.o --omf_browse .\build\spi_msd.crf --depend .\build\spi_msd.d)
 I (drivers\drv_stm32f40x_spi.h)(0x58F5D4AA)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
 I (..\..\include\rtthread.h)(0x57A9A848)
@@ -2544,7 +2544,7 @@ I (..\..\include\rtdef.h)(0x571CB880)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x578CA6AE)
@@ -2589,11 +2589,11 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 F (..\..\components\drivers\spi\spi_core.c)(0x58EF0B06)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\spi_core.o --omf_browse .\build\spi_core.crf --depend .\build\spi_core.d)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\include\rtthread.h)(0x57A9A848)
 I (.\rtconfig.h)(0x58F5C973)
@@ -2610,7 +2610,7 @@ I (..\..\include\rtdef.h)(0x571CB880)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 F (..\..\components\drivers\spi\spi_flash_w25qxx.c)(0x58F6127D)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\spi_flash_w25qxx.o --omf_browse .\build\spi_flash_w25qxx.crf --depend .\build\spi_flash_w25qxx.d)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
@@ -2622,7 +2622,7 @@ I (..\..\include\rtdef.h)(0x571CB880)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 F (..\..\components\drivers\src\completion.c)(0x571CB880)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\completion.o --omf_browse .\build\completion.crf --depend .\build\completion.d)
 I (..\..\include\rthw.h)(0x571CB880)
@@ -2634,7 +2634,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 F (..\..\components\drivers\src\dataqueue.c)(0x571CB880)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\dataqueue.o --omf_browse .\build\dataqueue.crf --depend .\build\dataqueue.d)
@@ -2646,7 +2646,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (..\..\include\rthw.h)(0x571CB880)
@@ -2660,7 +2660,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 F (..\..\components\drivers\src\portal.c)(0x571CB880)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\portal.o --omf_browse .\build\portal.crf --depend .\build\portal.d)
@@ -2672,7 +2672,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 F (..\..\components\drivers\src\ringbuffer.c)(0x571CB880)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\ringbuffer.o --omf_browse .\build\ringbuffer.crf --depend .\build\ringbuffer.d)
@@ -2684,7 +2684,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x55AEF5F2)
@@ -2697,7 +2697,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x55AEF5F2)
 I (..\..\include\rtservice.h)(0x571CB880)
 I (..\..\include\rtm.h)(0x571CB880)
 I (..\..\components\drivers\include\rtdevice.h)(0x571CB880)
-I (..\..\components\drivers\include\drivers/spi.h)(0x58EF2A58)
+I (..\..\components\drivers\include\drivers/spi.h)(0x58F70350)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (..\..\components\drivers\include\drivers/serial.h)(0x58EE35CC)
 F (..\..\components\finsh\shell.c)(0x57BAFC15)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I applications -I . -I drivers -I Libraries\CMSIS\Device\ST\STM32F4xx\Include -I Libraries\CMSIS\Include -I Libraries\STM32F4xx_HAL_Driver\Inc -I ..\..\include -I ..\..\libcpu\arm\cortex-m4 -I ..\..\libcpu\arm\common -I ..\..\components\dfs\include -I ..\..\components\dfs\filesystems\elmfat -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\drivers\spi -I ..\..\components\drivers\include -I ..\..\components\drivers\include -I ..\..\components\finsh-I F:\software\rtthread\rt-thread-stable-v2.1.x\bsp\stm32f407VGT6\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx --C99-o .\build\shell.o --omf_browse .\build\shell.crf --depend .\build\shell.d)

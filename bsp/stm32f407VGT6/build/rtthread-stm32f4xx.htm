@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\rtthread-stm32f4xx.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\rtthread-stm32f4xx.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Wed Apr 19 13:43:51 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Wed Apr 19 16:22:05 2017
 <BR><P>
 <H3>Maximum Stack Usage =        808 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -6448,8 +6448,8 @@ Local Symbols
 <LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sd_init
 </UL>
 
-<P><STRONG><a name="[27a]"></a>MSD_take_cs</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, spi_msd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = MSD_take_cs
+<P><STRONG><a name="[27a]"></a>MSD_take_cs</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, spi_msd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MSD_take_cs
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
@@ -6462,8 +6462,8 @@ Local Symbols
 <LI><a href="#[27c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_send_cmd
 </UL>
 
-<P><STRONG><a name="[27b]"></a>MSD_release_cs</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, spi_msd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = MSD_release_cs
+<P><STRONG><a name="[27b]"></a>MSD_release_cs</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, spi_msd.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MSD_release_cs
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
@@ -6506,7 +6506,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_read_block
 </UL>
 
-<P><STRONG><a name="[27e]"></a>_read_block</STRONG> (Thumb, 190 bytes, Stack size 48 bytes, spi_msd.o(.text))
+<P><STRONG><a name="[27e]"></a>_read_block</STRONG> (Thumb, 186 bytes, Stack size 48 bytes, spi_msd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = _read_block &rArr; _wait_token &rArr; rt_kprintf &rArr; rt_vsnprintf &rArr; print_number
 </UL>
 <BR>[Calls]<UL><LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_wait_token

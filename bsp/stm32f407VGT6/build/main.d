@@ -1,9 +1,0 @@
-.\build\main.o: applications\main.c
-.\build\main.o: ..\..\include\rtthread.h
-.\build\main.o: .\rtconfig.h
-.\build\main.o: ..\..\include\rtdebug.h
-.\build\main.o: ..\..\include\rtdef.h
-.\build\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\build\main.o: ..\..\include\rtservice.h
-.\build\main.o: ..\..\include\rtm.h
-.\build\main.o: ..\..\include\rtthread.h
