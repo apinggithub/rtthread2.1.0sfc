@@ -1,4 +1,0 @@
----- rtgui_graphic_set_device Matches (3 in 2 files) ----
-Driver.h (e:\apingrtt\rt-thread-stable-v2.1.x\components\gui\include\rtgui):rt_err_t rtgui_graphic_set_device(rt_device_t device);
-Rtgui_driver.c (e:\apingrtt\rt-thread-stable-v2.1.x\components\gui\src):rt_err_t rtgui_graphic_set_device(rt_device_t device)
-Rtgui_driver.c (e:\apingrtt\rt-thread-stable-v2.1.x\components\gui\src):RTM_EXPORT(rtgui_graphic_set_device);
