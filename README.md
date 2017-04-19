@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RT-Thread #
 
 [![Build Status](https://travis-ci.org/RT-Thread/rt-thread.svg)](https://travis-ci.org/RT-Thread/rt-thread)
@@ -67,3 +68,7 @@ NOTE: RT-Thread scons building system will tailor the system according to your r
 ## Contribution ##
 
 Please refer the contributors in the github. Thank all of RT-Thread Developers. 
+=======
+# rtthread2.1.0sfc
+rt-thread 2.1.0 study and apply 
+>>>>>>> 4fb7dcb61aa7db408ecb31b86d0178c393bf49fa
