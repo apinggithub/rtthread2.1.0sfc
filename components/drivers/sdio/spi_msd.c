@@ -148,42 +148,15 @@ static rt_err_t MSD_take_owner(struct rt_spi_device* spi_device)
 static void MSD_take_cs(struct rt_spi_device* device)
 {
     struct stm32_spi_cs * stm32_spi_cs = device->parent.user_data;
-	#if 0
-    struct rt_spi_message message;
-    /* initial message */
-    message.send_buf = RT_NULL;
-    message.recv_buf = RT_NULL;
-    message.length = 1;
-    message.cs_take = 1;
-    message.cs_release = 0;
-
-    /* transfer message */
-    device->bus->ops->xfer(device, &message);
-	#else    
-	//HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+	
     HAL_GPIO_WritePin(stm32_spi_cs->GPIOx, stm32_spi_cs->GPIO_Pin,GPIO_PIN_RESET);		
-	#endif
 }
 
 static void MSD_release_cs(struct rt_spi_device* device)
 {
     struct stm32_spi_cs * stm32_spi_cs = device->parent.user_data;
-	#if 0
-    struct rt_spi_message message;
-    
-    /* initial message */
-    message.send_buf = RT_NULL;
-    message.recv_buf = RT_NULL;
-    message.length = 0;
-    message.cs_take = 0;
-    message.cs_release = 1;
-
-    /* transfer message */
-    device->bus->ops->xfer(device, &message);
-	#else
-	//HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+	
     HAL_GPIO_WritePin(stm32_spi_cs->GPIOx, stm32_spi_cs->GPIO_Pin,GPIO_PIN_SET);   
-	#endif
 }
 
 static rt_bool_t rt_tick_timeout(rt_tick_t tick_start, rt_tick_t tick_long)
