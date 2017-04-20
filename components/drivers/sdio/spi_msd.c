@@ -53,7 +53,7 @@ static rt_size_t rt_msd_sdhc_read(rt_device_t dev, rt_off_t pos, void* buffer, r
 static rt_size_t rt_msd_sdhc_write (rt_device_t dev, rt_off_t pos, const void* buffer, rt_size_t size);
 
 static uint8_t crc7(const uint8_t *buf, int len);
- static rt_err_t read_send_cmd(
+static rt_err_t read_send_cmd(
     struct rt_spi_device* device,
     uint8_t cmd,
     uint32_t arg,
@@ -69,7 +69,7 @@ static uint8_t crc7(const uint8_t *buf, int len);
 	_wait_ready(device);
 
 	
-	  cmd_buffer[0] = (cmd | 0x40);
+	cmd_buffer[0] = (cmd | 0x40);
     cmd_buffer[1] = (uint8_t)(arg >> 24);
     cmd_buffer[2] = (uint8_t)(arg >> 16);
     cmd_buffer[3] = (uint8_t)(arg >> 8);
@@ -90,21 +90,21 @@ static uint8_t crc7(const uint8_t *buf, int len);
 
     /* transfer message */
 
-	  device->bus->ops->xfer(device, &message);
- /* initial message */
-		send_dummy = DUMMY;
-		message.send_buf = &send_dummy; 
-		message.recv_buf = response;
-		message.length = 1;
-		message.cs_take = message.cs_release = 0;
+	device->bus->ops->xfer(device, &message);
+    /* initial message */
+    send_dummy = DUMMY;
+    message.send_buf = &send_dummy; 
+    message.recv_buf = response;
+    message.length = 1;
+    message.cs_take = message.cs_release = 0;
     for(i=CARD_NCR; i<CARD_NCR_MAX+1; i++)
     {
         /* transfer message */
         device->bus->ops->xfer(device, &message);
-				if(0 == (response[0]&0x80))
-				{
-						break;
-				}
+        if(0 == (response[0]&0x80))
+        {
+                break;
+        }
     } /* wait response */
 
     if((CARD_NCR_MAX+1) == i)
@@ -235,7 +235,7 @@ static rt_err_t _send_cmd(
     uint8_t cmd_buffer[6],send;
     uint8_t recv_buffer[sizeof(cmd_buffer)];
     uint32_t i;
-	  cmd_buffer[0] = (cmd | 0x40);
+	cmd_buffer[0] = (cmd | 0x40);
     cmd_buffer[1] = (uint8_t)(arg >> 24);
     cmd_buffer[2] = (uint8_t)(arg >> 16);
     cmd_buffer[3] = (uint8_t)(arg >> 8);
@@ -249,8 +249,8 @@ static rt_err_t _send_cmd(
     cmd_buffer[5] = (crc);
     send = DUMMY;
     //cmd_buffer[6] = DUMMY;
-		MSD_release_cs(device);
-		/* initial message */
+    MSD_release_cs(device);
+    /* initial message */
     message.send_buf = &send;
     message.recv_buf = recv_buffer;
     message.length = 1;
@@ -258,8 +258,7 @@ static rt_err_t _send_cmd(
 		
 
     /* transfer message */
-
-		device->bus->ops->xfer(device, &message);
+	device->bus->ops->xfer(device, &message);
     MSD_take_cs(device);
     _wait_ready(device);
 
@@ -272,7 +271,7 @@ static rt_err_t _send_cmd(
 
     /* transfer message */
 
-		device->bus->ops->xfer(device, &message);
+	device->bus->ops->xfer(device, &message);
    
 
     for(i=CARD_NCR; i<(CARD_NCR_MAX+1); i++)
@@ -495,7 +494,7 @@ static rt_err_t _write_block(struct rt_spi_device* device, const void * buffer, 
     {
         /* initial message */
         message.send_buf = buffer;
-       // message.recv_buf = RT_NULL;
+        // message.recv_buf = RT_NULL;
         message.length = block_size;
         //message.cs_take = message.cs_release = 0;
 
@@ -517,7 +516,7 @@ static rt_err_t _write_block(struct rt_spi_device* device, const void * buffer, 
         /* transfer message */
         device->bus->ops->xfer(device, &message);
 
-//        response = 0x0E & recv_buffer[2];
+        //response = 0x0E & recv_buffer[2];
         response = MSD_GET_DATA_RESPONSE(recv_buffer[2]);
         if(response != MSD_DATA_OK)
         {
@@ -528,7 +527,7 @@ static rt_err_t _write_block(struct rt_spi_device* device, const void * buffer, 
 
     /* wati ready */
     return _wait_ready(device);
-		//return RT_EOK;
+	//return RT_EOK;
 }
 
 /* RT-Thread Device Driver Interface */
@@ -671,7 +670,7 @@ static rt_err_t rt_msd_init(rt_device_t dev)
             /* try SD Ver1.x */
             while(1)
             {
-							#if 1
+				#if 1
                 MSD_take_cs(msd->spi_device);
 
                 result = _send_cmd(msd->spi_device, READ_OCR, 0x00, 0x00, response_r3, response);
@@ -833,10 +832,10 @@ static rt_err_t rt_msd_init(rt_device_t dev)
         }
         else if(msd->card_type == MSD_CARD_TYPE_SD_V2_X)
         {
-					#if 1
-					  //MSD_release_cs(msd->spi_device);
-						//_wait_ready(msd->spi_device);
-						//_wait_ready(msd->spi_device);
+            #if 1
+            //MSD_release_cs(msd->spi_device);
+            //_wait_ready(msd->spi_device);
+            //_wait_ready(msd->spi_device);
             MSD_take_cs(msd->spi_device);
 
             result = _send_cmd(msd->spi_device, READ_OCR, 0x00, 0x00, response_r3, response);
@@ -887,7 +886,7 @@ static rt_err_t rt_msd_init(rt_device_t dev)
 
                 /* CMD55 APP_CMD */
                 result = _send_cmd(msd->spi_device, APP_CMD, 0x00, 0x65, response_r1, response);
-//                if((result != RT_EOK) || (response[0] == 0x01))
+                //if((result != RT_EOK) || (response[0] == 0x01))
                 if(result != RT_EOK)
                 {
                     MSD_release_cs(msd->spi_device);
@@ -916,7 +915,7 @@ static rt_err_t rt_msd_init(rt_device_t dev)
                 {
                     MSD_release_cs(msd->spi_device);
                     MSD_DEBUG("[info] Not SD card4 , response : 0x%02X\r\n", response[0]);
-//                    break;
+                    //break;
                 }
             }
             while(response[0] != MSD_RESPONSE_NO_ERROR);
@@ -1012,16 +1011,16 @@ static rt_err_t rt_msd_init(rt_device_t dev)
         msd->geometry.block_size = SECTOR_SIZE;
         msd->geometry.bytes_per_sector = SECTOR_SIZE;
     }
-		#else
-		msd->geometry.block_size = SECTOR_SIZE;
+    #else
+    msd->geometry.block_size = SECTOR_SIZE;
     msd->geometry.bytes_per_sector = SECTOR_SIZE;
-		#endif
+	#endif
     /* read CSD */
     {
         uint8_t CSD_buffer[MSD_CSD_LEN];
 
         MSD_take_cs(msd->spi_device);
-//        result = _send_cmd(msd->spi_device, SEND_CSD, 0x00, 0xAF, response_r1, response);
+        //result = _send_cmd(msd->spi_device, SEND_CSD, 0x00, 0xAF, response_r1, response);
         result = _send_cmd(msd->spi_device, SEND_CSD, 0x00, 0x00, response_r1, response);
 
         if(result != RT_EOK)
@@ -1158,8 +1157,7 @@ static rt_err_t rt_msd_init(rt_device_t dev)
                     /* get TRAN_SPEED 8bit [103:96] */
                     tmp8 = CSD_buffer[3];
                     if(tmp8 == 0x32)
-                    {
-											//msd->max_clock = 1000 * 1000 ; /* 1Mbit/s. */
+                    {						
                         msd->max_clock = 1000 * 1000 * 10; /* 10Mbit/s. */
                     }
                     else if(tmp8 == 0x5A)
@@ -1474,7 +1472,7 @@ static rt_err_t sd_init(rt_device_t dev)
                     {
                         MSD_release_cs(msd->spi_device);
                         //MSD_DEBUG("[info] Not SD card2 , may be MMC\r\n");
-                       // break;
+                        //break;
                     }
 
                     /* ACMD41 SD_SEND_OP_COND */
@@ -1577,10 +1575,10 @@ static rt_err_t sd_init(rt_device_t dev)
         }
         else if(msd->card_type == MSD_CARD_TYPE_SD_V2_X)
         {
-					#if 1
-					  MSD_release_cs(msd->spi_device);
-						_wait_ready(msd->spi_device);
-						_wait_ready(msd->spi_device);
+            #if 1
+            MSD_release_cs(msd->spi_device);
+            //_wait_ready(msd->spi_device);
+            _wait_ready(msd->spi_device);
             MSD_take_cs(msd->spi_device);
 
             result = _send_cmd(msd->spi_device, READ_OCR, 0x00, 0x00, response_r3, response);
@@ -1631,7 +1629,7 @@ static rt_err_t sd_init(rt_device_t dev)
 
                 /* CMD55 APP_CMD */
                 result = _send_cmd(msd->spi_device, APP_CMD, 0x00, 0x65, response_r1, response);
-//                if((result != RT_EOK) || (response[0] == 0x01))
+                //if((result != RT_EOK) || (response[0] == 0x01))
                 if(result != RT_EOK)
                 {
                     MSD_release_cs(msd->spi_device);
@@ -1660,7 +1658,7 @@ static rt_err_t sd_init(rt_device_t dev)
                 {
                     MSD_release_cs(msd->spi_device);
                     //MSD_DEBUG("[info] Not SD card4 , response : 0x%02X\r\n", response[0]);
-//                    break;
+                    //break;
                 }
             }
             while(response[0] != MSD_RESPONSE_NO_ERROR);
@@ -1709,9 +1707,9 @@ static rt_err_t sd_init(rt_device_t dev)
             goto _exit;
         }
     } /* init SD card */
-		/* set blocklen*/
-		#if 0
-		 {
+	/* set blocklen*/
+	#if 0	
+    {    
         MSD_release_cs(msd->spi_device);
         MSD_take_cs(msd->spi_device);
         result = _send_cmd(msd->spi_device, SET_BLOCKLEN, SECTOR_SIZE, 0x00, response_r1, response);
@@ -1723,9 +1721,9 @@ static rt_err_t sd_init(rt_device_t dev)
             goto _exit;
         }
         msd->geometry.block_size = SECTOR_SIZE;
-        msd->geometry.bytes_per_sector = SECTOR_SIZE;
-    }
-		 #endif
+        msd->geometry.bytes_per_sector = SECTOR_SIZE;   
+    }        
+	#endif
     /* config spi to high speed */
     {
         struct rt_spi_configuration cfg;
@@ -1739,19 +1737,19 @@ static rt_err_t sd_init(rt_device_t dev)
 _exit:
     MSD_release_cs(msd->spi_device);
     rt_mutex_release(&(msd->spi_device->bus->lock));
-		//rt_thread_delay(200);
+	//rt_thread_delay(200);
     return result;
 }
 
 static rt_err_t rt_msd_open(rt_device_t dev, rt_uint16_t oflag)
 {
-//    struct msd_device * msd = (struct msd_device *)dev;
+    //struct msd_device * msd = (struct msd_device *)dev;
     return RT_EOK;
 }
 
 static rt_err_t rt_msd_close(rt_device_t dev)
 {
-//    struct msd_device * msd = (struct msd_device *)dev;
+    //struct msd_device * msd = (struct msd_device *)dev;
     return RT_EOK;
 }
 
@@ -1760,8 +1758,8 @@ static rt_size_t rt_msd_read(rt_device_t dev, rt_off_t pos, void* buffer, rt_siz
     struct msd_device * msd = (struct msd_device *)dev;
     uint8_t response[MSD_RESPONSE_MAX_LEN];
     rt_err_t result = RT_EOK;
-	  rt_err_t result1 = RT_EOK;
-	  uint8_t temp_t1=0;
+	rt_err_t result1 = RT_EOK;
+	uint8_t temp_t1=0;
     //rt_msd_init(dev);
 	
     result = MSD_take_owner(msd->spi_device);
@@ -1771,7 +1769,7 @@ static rt_size_t rt_msd_read(rt_device_t dev, rt_off_t pos, void* buffer, rt_siz
         goto _exit;
     }
     /* config spi to high speed */
-		#if 0
+	#if 0
     {
         struct rt_spi_configuration cfg;
         cfg.data_width = 8;
@@ -1780,13 +1778,13 @@ static rt_size_t rt_msd_read(rt_device_t dev, rt_off_t pos, void* buffer, rt_siz
 
         rt_spi_configure(msd->spi_device,&cfg);
     } /* config spi */
-		#else
-		do
-		{
-		  result1 = sd_init(dev);
-			temp_t1++;
-		}while((result1 != RT_EOK)&&(temp_t1<10));
-		#endif
+	#else
+    do
+    {
+      result1 = sd_init(dev);
+        temp_t1++;
+    }while((result1 != RT_EOK)&&(temp_t1<10));
+    #endif
     if(size == 1)
     {
         MSD_take_cs(msd->spi_device);
@@ -1806,7 +1804,7 @@ static rt_size_t rt_msd_read(rt_device_t dev, rt_off_t pos, void* buffer, rt_siz
             size = 0;
 						goto _exit;
         }
-				//rt_thread_delay(20000);
+        //rt_thread_delay(20000);
     }
     else if(size > 1)
     {
@@ -1856,8 +1854,8 @@ static rt_size_t rt_msd_sdhc_read(rt_device_t dev, rt_off_t pos, void* buffer, r
     struct msd_device * msd = (struct msd_device *)dev;
     uint8_t response[MSD_RESPONSE_MAX_LEN];
     rt_err_t result = RT_EOK;
-		rt_err_t result1;
-		uint8_t temp_timeout = 0;
+	rt_err_t result1;
+	uint8_t temp_timeout = 0;
     result = MSD_take_owner(msd->spi_device);
     if (result != RT_EOK)
     {
@@ -1875,11 +1873,11 @@ static rt_size_t rt_msd_sdhc_read(rt_device_t dev, rt_off_t pos, void* buffer, r
         rt_spi_configure(msd->spi_device,&cfg);
     } /* config spi */
 	#else
-     do
-		{
-		  result1 = sd_init(dev);
-			temp_timeout++;
-		}while((result1 != RT_EOK)&&(temp_timeout<100));
+    do
+	{
+		result1 = sd_init(dev);
+		temp_timeout++;
+	}while((result1 != RT_EOK)&&(temp_timeout<100));
 	#endif
     /* SINGLE_BLOCK? */
     if(size == 1)
@@ -1950,11 +1948,11 @@ static rt_size_t rt_msd_write (rt_device_t dev, rt_off_t pos, const void* buffer
     struct msd_device * msd = (struct msd_device *)dev;
     uint8_t response[MSD_RESPONSE_MAX_LEN];
     rt_err_t result;
-		rt_err_t result1;
-		uint8_t temp_timeout = 0;
+	rt_err_t result1;
+	uint8_t temp_timeout = 0;
 
 	
-		//rt_msd_init(dev);
+	//rt_msd_init(dev);
     result = MSD_take_owner(msd->spi_device);
 
     if (result != RT_EOK)
@@ -1972,20 +1970,20 @@ static rt_size_t rt_msd_write (rt_device_t dev, rt_off_t pos, const void* buffer
 
         rt_spi_configure(msd->spi_device,&cfg);
     } /* config spi */
-		#else
-     do
-		{
-		  result1 = sd_init(dev);
-			temp_timeout++;
-		}while((result1 != RT_EOK)&&(temp_timeout<10));
-		#endif
+	#else
+    do
+	{
+		result1 = sd_init(dev);
+		temp_timeout++;
+    }while((result1 != RT_EOK)&&(temp_timeout<10));
+    #endif
     /* SINGLE_BLOCK? */
     if(size == 1)
     {
         MSD_take_cs(msd->spi_device);
-				//result = read_send_cmd(msd->spi_device, SEND_STATUS, pos * msd->geometry.bytes_per_sector, 0, response_r1, response);
-			  //result = read_send_cmd(msd->spi_device, WRITE_BLOCK, pos * msd->geometry.bytes_per_sector, 0xff, response_r1, response);
-               result = _send_cmd(msd->spi_device, WRITE_BLOCK,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
+        //result = read_send_cmd(msd->spi_device, SEND_STATUS, pos * msd->geometry.bytes_per_sector, 0, response_r1, response);
+        //result = read_send_cmd(msd->spi_device, WRITE_BLOCK, pos * msd->geometry.bytes_per_sector, 0xff, response_r1, response);
+        result = _send_cmd(msd->spi_device, WRITE_BLOCK,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
         if((result != RT_EOK) || (response[0] != MSD_RESPONSE_NO_ERROR))
         {
             MSD_DEBUG("[err] CMD WRITE %d fail1!%02X\r\n", pos,response[0]);
@@ -1998,11 +1996,11 @@ static rt_size_t rt_msd_write (rt_device_t dev, rt_off_t pos, const void* buffer
         {
             MSD_DEBUG("[err] write BLOCK #%d fail!1\r\n", pos);
             size = 0;
-					  goto _exit;
+			goto _exit;
         }
-				if(temp_timeout >1)
-					MSD_DEBUG("[err] write ok\n");
-				//result = _send_cmd(msd->spi_device, STOP_TRANSMISSION, 0x00, 0x00, response_r1b, response);
+        if(temp_timeout >1)
+        MSD_DEBUG("[err] write ok\n");
+        //result = _send_cmd(msd->spi_device, STOP_TRANSMISSION, 0x00, 0x00, response_r1b, response);
     }
     else if(size > 1)
     {
@@ -2086,8 +2084,8 @@ _exit:
     /* release and exit */
     MSD_release_cs(msd->spi_device);
     rt_mutex_release(&(msd->spi_device->bus->lock));
-		rt_thread_delay(200);
-		//_send_cmd(msd->spi_device, STOP_TRANSMISSION,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
+    rt_thread_delay(200);
+    //_send_cmd(msd->spi_device, STOP_TRANSMISSION,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
     return size;
 }
 
@@ -2096,11 +2094,11 @@ static rt_size_t rt_msd_sdhc_write (rt_device_t dev, rt_off_t pos, const void* b
     struct msd_device * msd = (struct msd_device *)dev;
     uint8_t response[MSD_RESPONSE_MAX_LEN];
     rt_err_t result;
-		rt_err_t result1;
-		uint8_t temp_timeout = 0;
+    rt_err_t result1;
+    uint8_t temp_timeout = 0;
 
-	
-		//rt_msd_init(dev);
+
+    //rt_msd_init(dev);
     result = MSD_take_owner(msd->spi_device);
 
     if (result != RT_EOK)
@@ -2118,13 +2116,13 @@ static rt_size_t rt_msd_sdhc_write (rt_device_t dev, rt_off_t pos, const void* b
 
         rt_spi_configure(msd->spi_device,&cfg);
     } /* config spi */
-		#else
-     do
-		{
-		  result1 = sd_init(dev);
-			temp_timeout++;
-		}while((result1 != RT_EOK)&&(temp_timeout<100));
-		#endif
+	#else
+    do
+    {
+        result1 = sd_init(dev);
+        temp_timeout++;
+    }while((result1 != RT_EOK)&&(temp_timeout<100));
+    #endif
     /* SINGLE_BLOCK? */
     if(size == 1)
     {
@@ -2142,9 +2140,9 @@ static rt_size_t rt_msd_sdhc_write (rt_device_t dev, rt_off_t pos, const void* b
         {
             MSD_DEBUG("[err] write BLOCK #%d fail!\r\n", pos);
             size = 0;
-					  goto _exit;
+			goto _exit;
         }
-				//result = _send_cmd(msd->spi_device, STOP_TRANSMISSION, 0x00, 0x00, response_r1b, response);
+		//result = _send_cmd(msd->spi_device, STOP_TRANSMISSION, 0x00, 0x00, response_r1b, response);
     }
     else if(size > 1)
     {
@@ -2228,8 +2226,8 @@ _exit:
     /* release and exit */
     MSD_release_cs(msd->spi_device);
     rt_mutex_release(&(msd->spi_device->bus->lock));
-		rt_thread_delay(200);
-		//_send_cmd(msd->spi_device, STOP_TRANSMISSION,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
+    rt_thread_delay(200);
+    //_send_cmd(msd->spi_device, STOP_TRANSMISSION,pos * msd->geometry.bytes_per_sector, 0x00, response_r1, response);
     return size;
 }
 static rt_err_t rt_msd_control(rt_device_t dev, rt_uint8_t cmd, void *args)
@@ -2243,7 +2241,8 @@ static rt_err_t rt_msd_control(rt_device_t dev, rt_uint8_t cmd, void *args)
         struct rt_device_blk_geometry *geometry;
 
         geometry = (struct rt_device_blk_geometry *)args;
-        if (geometry == RT_NULL) return -RT_ERROR;
+        if (geometry == RT_NULL) 
+            return -RT_ERROR;
 
         geometry->bytes_per_sector = msd->geometry.bytes_per_sector;
         geometry->block_size = msd->geometry.block_size;
